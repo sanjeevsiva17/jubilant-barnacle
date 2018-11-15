@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+poker.progressionstudios.com	TRUE	/	FALSE	1999999999	wordpress_test_cookie	WP+Cookie+check
+poker.progressionstudios.com	TRUE	/	FALSE	1999999999	woocommerce_items_in_cart	1
+poker.progressionstudios.com	TRUE	/	FALSE	1999999999	woocommerce_cart_hash	d1e8c365b6f9837f3998545609f71bb9
+poker.progressionstudios.com	TRUE	/	FALSE	1999999999	wp_woocommerce_session_9adbea3e520ff69b5ed05e9f8e3129c6	4de4bf927eb1f3bee969faf331e6d143%7C%7C1540118415%7C%7C1540114815%7C%7Ceb00b321ad9267bd2f18146d68fe5a50
+
