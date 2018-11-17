@@ -21,6 +21,8 @@
 		</script>
     
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
 <script>
   // Initialize Firebase
   var config = {
@@ -902,58 +904,121 @@ body #content-pro .woocommerce-shop-single .summary h1.product_title { text-deco
 
 			
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-				<label for="username">Username or email address&nbsp;<span class="required">*</span></label>
-				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" autocomplete="username" value="" />			</p>
+				<label for="username">Name&nbsp;<span class="required">*</span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"  id="name" autocomplete="username" value="" />			</p>
+            
+            	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="username">Address&nbsp;<span class="required">*</span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"  id="address" autocomplete="username" value="" />			</p>
+            
+            	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="username">DOB&nbsp;<span class="required">*</span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"  id="dob" autocomplete="username" value="" />			</p>
+            
+            	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="username">PAN CARD Number&nbsp;<span class="required">*</span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"  id="pan_card" autocomplete="username" value="" />			</p>
+            
+            	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="username">State&nbsp;<span class="required">*</span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"  id="state" autocomplete="username" value="" />			</p>
+            
+            
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-				<label for="password">Password&nbsp;<span class="required">*</span></label>
-				<input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password" />
+				<label for="username">Age&nbsp;<span class="required">*</span></label>
+				<input class="woocommerce-Input woocommerce-Input--text input-text"  name="password" id="age" autocomplete="current-password" />
 			</p>
-
+            
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="username">Email&nbsp;<span class="required">*</span></label>
+				<input class="woocommerce-Input woocommerce-Input--text input-text"  name="password" id="username" autocomplete="current-password" />
+			</p>
+            
+            	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="password">Password&nbsp;<span class="required">*</span></label>
+				<input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="pass" autocomplete="current-password" />
+			</p>
 			
 			<p class="form-row">
                 
-                <input class="woocommerce-Button button" onclick="logo()" name="login" value="Log in" type="button">
-                
-                
+                <input class="woocommerce-Button button" onclick="logo()" name="login" value="Register" type="button">
+                <button type='button' class='like' id="like" style="display: none;"></button>
+                <div id="temp"></div>
+            	</p>
+			
+
+			
+		</form>
                 <script>
                 
                 function logo()
                     {
-                            var error=true;;
-   var email=document.getElementById("username").value;
-var pass=document.getElementById("password").value;
-    var errorMessage = "error";
-firebase.auth().signInWithEmailAndPassword(email, pass).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-    
-errorMessage = error.message;
-    window.alert(errorMessage);
-    error=false;
-  // ...
-}).then(function(docRef) {
-   // alert("error:"+errorMessage);
-                    if(errorMessage=="error")
-                    window.location.href = "..\index.html";    
+       var email=document.getElementById("username").value;
+    var pass=document.getElementById("pass").value;
+    alert(email+pass);
+    var error=false;
+firebase.auth().createUserWithEmailAndPassword(email, pass)
+ .catch(function (err) {
+   // Handle errors
+    console.log(err);
+    alert(err);
+    error=true;
+ }).then(function (err) {
+   // Handle errors
+    if(error)
+        {
+                console.log(firebase.auth().currentUser.uid)
+    document.getElementById("like").click();
+        }
 
 
-
-                });
-   
-if(error)
-
-alert(error);
+ 
+ });
                     }
+                    
                 
                 </script>
+             
+		
                 
-			</p>
-			<p class="woocommerce-LostPassword lost_password">
-				<a href="lost-password/index.html">Lost your password?</a>
-			</p>
+                    <script type="text/javascript">
+       
+        $(document).ready(function(){
+            $(".like").click(function(){
+                 var req=document.getElementById("temp").innerHTML;
+                var e=document.getElementById("username").value;
+                var n=document.getElementById("name").value;
+                var pn=document.getElementById("pan_card").value;
+                var ad=document.getElementById("address").value;
+                var age=document.getElementById("age").value;
+                var state=document.getElementById("state").value;
+                                   console.log("test"+e+n+pn+ad+age+state)
 
-			
-		</form>
+                $.ajax({
+                    type: 'POST',
+                    url: 'save.php',
+                  data:{
+                            "uid":req,
+                            "email":e,
+                            "name":n,
+                            "pan":document.getElementById("pan_card").value,
+                            "address":ad,
+                            "age":age,
+                            "state":state,
+                            "coins":0
+                      
+
+
+                       },
+                    success: function(data) {
+                   console.log(e+n+pn+ad+age+state)
+
+                                        window.location.href = "../index.html";
+                    }
+                });
+       });
+    });
+    </script>
 
 
 </div>
