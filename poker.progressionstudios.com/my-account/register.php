@@ -40,6 +40,7 @@
     firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
+                                        //window.location.href = "../news/dashboard.html";
 
 
 if (user) {
@@ -965,7 +966,7 @@ firebase.auth().createUserWithEmailAndPassword(email, pass)
     error=true;
  }).then(function (err) {
    // Handle errors
-    if(error)
+    if(error==false)
         {
                 console.log(firebase.auth().currentUser.uid)
     document.getElementById("like").click();
@@ -985,7 +986,7 @@ firebase.auth().createUserWithEmailAndPassword(email, pass)
        
         $(document).ready(function(){
             $(".like").click(function(){
-                 var req=document.getElementById("temp").innerHTML;
+                 var req=firebase.auth().currentUser.uid;
                 var e=document.getElementById("username").value;
                 var n=document.getElementById("name").value;
                 var pn=document.getElementById("pan_card").value;
@@ -1013,7 +1014,7 @@ firebase.auth().createUserWithEmailAndPassword(email, pass)
                     success: function(data) {
                    console.log(e+n+pn+ad+age+state)
 
-                                        window.location.href = "../index.html";
+                                        window.location.href = "../news/dashboard.html";
                     }
                 });
        });

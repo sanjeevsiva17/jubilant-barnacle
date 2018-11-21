@@ -79,6 +79,9 @@
 
 	  
     </script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
+
     <style type="text/css">
       img.wp-smiley,
       img.emoji {
@@ -1076,13 +1079,15 @@
             </div>
           </div>
           <!-- close #mobile-menu-container -->
+            
+            
         </header>
       </div>
       <!-- close #progression-studios-header-position -->
       <div id="page-title-pro">
         <div class="width-container-pro">
           <div id="progression-studios-page-title-container">
-            <a href="Profile.html"  class="butun" onclick="Profile()">Profile
+            <a href="Profile.html"  class="butun">Profile
             </a>
             <a href="Play.html"  class="butun" id="Play">Play
             </a>
@@ -1091,6 +1096,9 @@
             <a href="Payment.html"  class="butun" id="Payment">Payment
             </a>
             <a href="Withdraw.html"  class="butun" id="myButton">Withdrawal
+            </a>
+              
+              <a class="butun" id="logout" onclick="logout()">Logout
             </a>
           </div>
           <!-- #progression-studios-page-title-container -->
@@ -1117,6 +1125,47 @@
             box-sizing: border-box;
           }  
         </style>
+          <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAtFR07p-WSNR1aOSd9z2ZBWTEggOZwMBo",
+    authDomain: "video-poker-be10b.firebaseapp.com",
+    databaseURL: "https://video-poker-be10b.firebaseio.com",
+    projectId: "video-poker-be10b",
+    storageBucket: "video-poker-be10b.appspot.com",
+    messagingSenderId: "783364585680"
+  };
+  firebase.initializeApp(config);
+
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+
+    // ...
+  } else {
+    // User is signed out.
+    // ...
+                     window.location.href = '../index.html';    
+
+  }
+});
+
+          </script>
+          <script>
+              
+    
+function logout()
+    {
+        firebase.auth().signOut().then(function() {
+
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});
+    }
+</script>
         <!-- close .width-container-pro -->
       </div>
       <!-- #page-title-pro -->
