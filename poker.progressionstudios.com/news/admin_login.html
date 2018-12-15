@@ -851,38 +851,23 @@ body #content-pro .woocommerce-shop-single .summary h1.product_title { text-deco
 
 						<p class="form-row">
 
-											<input class="woocommerce-Button button" onclick="login()" name="login" value="Log in" type="button">
+											<input class="woocommerce-Button button" onclick="logo()" name="login" value="Log in" type="button">
 
 
 											<script>
 
 											function logo()
-													{
-																	var error=true;;
-				 var email=document.getElementById("username").value;
-			var pass=document.getElementById("password").value;
-					var errorMessage = "error";
-			firebase.auth().signInWithEmailAndPassword(email, pass).catch(function(error) {
-				// Handle Errors here.
-				var errorCode = error.code;
+											{
+													var email = document.getElementById("username").value;
+													var pass = document.getElementById("password").value;
 
-			errorMessage = error.message;
-					window.alert(errorMessage);
-					error=false;
-				// ...
-			}).then(function(docRef) {
-				 // alert("error:"+errorMessage);
-													if(errorMessage=="error")
-													window.location.href = "../news/dashboard.html";
-
-
-
-											});
-
-			if(error)
-
-			alert(error);
-													}
+													firebase.auth().signInWithEmailAndPassword(email, pass).catch(function(error) {
+														var errorCode = error.code;
+														var errorMessage = error.message;
+														console.log(errorMessage);
+														alert(errorMessage);
+													});
+											}
 
 											</script>
 
