@@ -813,19 +813,21 @@ body #content-pro .woocommerce-shop-single .summary h1.product_title { text-deco
 			$sqluser = "SELECT * FROM details";
 			$result = $db->query($sqluser);
 echo "						<div class='woocommerce'>
-							<h3>User</h3>
+							<h3>Payment Request</h3>
 ";
 			echo "<table class='woocommerce-table'>
 
 				<tr>
 
-				<th>uid</th>
+				<th>id</th>
 
-				<th>name</th>
-                <th>email</th>
+				<th>time</th>
 
+				<th>Amount</th>
 
-				<th>pan</th>
+				<th>Mode</th>
+
+				<th>Status</th>
 
 				</tr>";
 
@@ -855,147 +857,6 @@ $c++;
 echo "</div>";
 			}
 
-
-			$sqluser1 = "SELECT * FROM coupon";
-			$result1 = $db->query($sqluser1);
-echo "						<div class='woocommerce'>
-							<h3>Coupons</h3>
-";
-			echo "<table class='woocommerce-table'>
-
-				<tr>
-
-				<th>Code</th>
-                <th>Coins</th>
-
-				<th>Min amt to be active</th>
-
-
-				<th>No of Usage Left</th>
-
-				</tr>";
-
-			if ($result1->num_rows >= 1)
-			{
-
-			    // output data of each row
-			    while($row = $result1->fetch_assoc())
-			    {
-					echo "<tr>";
-					echo "<td>" . $row['code'] . "</td>";
-					echo "<td>" . $row['cost'] . "</td>";
-					echo "<td>" . $row['min_bal'] . "</td>";
-					echo "<td>" . $row['usage_count'] . "</td>";
-					echo "</tr>";
-			    }
-			echo "</table>";
-                echo "<br><br>";
-echo "</div>";
-			}
-
-
-
-
-
-echo "						<div class='woocommerce'>
-							<h3>Payments</h3>
-";
-			$sqlpay = "SELECT * FROM payments";
-			$result_payment = $db->query($sqlpay);
-
-			echo "<table class='woocommerce-table'>
-
-				<tr>
-
-				<th>id</th>
-
-				<th>payment</th>
-
-				<th>time</th>
-
-				</tr>";
-
-			if ($result_payment->num_rows >= 1)
-            {
-                $pp=0;
-			    // output data of each row
-			    while($row = $result_payment->fetch_assoc())
-			    {
-					echo "<tr>";
-
-					echo "<td>" . $row['id'] . "</td>";
-
-					echo "<td>" . $row['payment'] . "</td>";
-
-					echo "<td>" . $row['timestamp'] . "</td>";
-                    $pp+= (int)$row['payment'];
-
-					echo "</tr>";
-			    }
-
-			}
-
-			echo "</table>";
-                echo " Total payments received by users till date = Rs ".$pp;
-
-                                echo "<br><br>";
-
-echo "</div>";
-			$sqlpfair = "SELECT betamt, hand, status, winnings FROM pfair";
-			$result_pfair = $db->query($sqlpfair);
-echo "						<div class='woocommerce'>
-							<h3>Recent Plays</h3>
-";
-			echo "<table class='woocommerce-table'>
-
-				<tr>
-
-				<th>betamt</th>
-
-				<th>hand</th>
-
-				<th>status</th>
-
-				<th>winnings</th>
-
-				</tr>";
-
-			if ($result_pfair->num_rows >= 1)
-			{
-                $t=0;
-			    // output data of each row
-			    while($row = $result_pfair->fetch_assoc())
-			    {
-                    $manage = json_decode($row['hand'], true);
-
-					echo "<tr>";
-
-
-					echo "<td>" . $row['betamt'] . "</td>";
-                    if(isset($manage[4]))
-{
-                     print_r("<td>".$manage[0]['value']." of ".$manage[0]['suit']."  ".$manage[1]['value']." of ".$manage[1]['suit']."  ".$manage[2]['value']." of ".$manage[2]['suit']."  ".$manage[3]['value']." of ".$manage[3]['suit']."  ".$manage[4]['value']." of ".$manage[4]['suit']."</td>");
-}
-                    else if(isset($manage[3]))
-                        {
-                     print_r("<td>".$manage[0]['value']." of ".$manage[0]['suit']."  ".$manage[1]['value']." of ".$manage[1]['suit']."  ".$manage[2]['value']." of ".$manage[2]['suit']."  ".$manage[3]['value']." of ".$manage[3]['suit']."  "."</td>");
-}
-
-					echo "<td>" . $row['status'] . "</td>";
-
-					echo "<td>" . $row['winnings'] . "</td>";
-                    if(strcmp($row['status'],'After Hit')==0)
-                    $t+= (int)$row['winnings'];
-					echo "</tr>";
-
-			    }
-                                echo "</table>";
-
-echo " Total winnings by users till date = Rs ".$t;
-			}
-                echo "<br><br>";
-
-echo "</div>";
 
 			?>
 
