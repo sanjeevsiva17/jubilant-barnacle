@@ -77,7 +77,7 @@
 	  // location.href = "/Withdraw.html";
 	  // };
 
-	  
+
     </script>
       <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 
@@ -1079,8 +1079,8 @@
             </div>
           </div>
           <!-- close #mobile-menu-container -->
-            
-            
+
+
         </header>
       </div>
       <!-- close #progression-studios-header-position -->
@@ -1097,7 +1097,7 @@
             </a>
             <a href="Withdraw.html"  class="butun" id="myButton">Withdrawal
             </a>
-              
+
               <a class="butun" id="logout" onclick="logout()">Logout
             </a>
           </div>
@@ -1123,7 +1123,7 @@
             transition: all .5s;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
-          }  
+          }
         </style>
           <script>
   // Initialize Firebase
@@ -1147,15 +1147,15 @@ firebase.auth().onAuthStateChanged(function(user) {
   } else {
     // User is signed out.
     // ...
-                     window.location.href = '../index.html';    
+                     window.location.href = '../index.html';
 
   }
 });
 
           </script>
           <script>
-              
-    
+
+
 function logout()
     {
         firebase.auth().signOut().then(function() {
